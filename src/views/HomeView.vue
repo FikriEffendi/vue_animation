@@ -1,34 +1,39 @@
 <script setup>
 import { ref } from "vue";
 
-const showText = ref("true");
+const tasks = ref(["tidur", "makan", "mandi"]);
+
+const input = ref("");
+
+const addTask = () => {
+  if (input.value) {
+    tasks.value.push(input.value);
+    input.value = "";
+  }
+};
 </script>
 
 <template>
-  <main>
-    <div class="relative">
-      <transition name="fade">
-        <h1 v-if="showText" key="text-1" class="absolute">Halo banh!</h1>
-        <h1 v-else key="text-2" class="absolute">Oke</h1>
-      </transition>
-      <button @click="showText = !showText" class="mt-3">toggle</button>
+  <div class="flex items-center justify-center p-4">
+    <div class="text-center">
+      <div class="mb-3">
+        <input
+          type="text"
+          autofocus
+          class="p-1 border border-black rounded"
+          @keyup.enter="addTask()"
+          v-model="input"
+        />
+      </div>
+      <div
+        v-for="task in tasks"
+        :key="task"
+        class="p-2 mt-3 border border-black min-w-[640px] rounded"
+      >
+        <div>{{ task }}</div>
+      </div>
     </div>
-  </main>
+  </div>
 </template>
 
-<style scoped>
-.fade-enter-from,
-.fade-leave-to {
-  @apply opacity-0;
-}
-
-.fade-enter-to,
-.fade-leave-from {
-  @apply opacity-100;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  @apply transition-all duration-1000 ease-in-out;
-}
-</style>
+<style scoped></style>
