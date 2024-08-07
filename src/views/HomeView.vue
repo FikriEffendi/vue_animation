@@ -29,16 +29,30 @@ const deleteTask = (deletedTask) => {
           v-model="input"
         />
       </div>
-      <div
-        v-for="task in tasks"
-        :key="task"
-        class="p-2 mt-3 border border-black min-w-[640px] rounded cursor-pointer"
-        @click="deleteTask(task)"
-      >
-        <div>{{ task }}</div>
-      </div>
+      <transition-group name="list">
+        <div
+          v-for="task in tasks"
+          :key="task"
+          class="mt-3 min-w-[640px] cursor-pointer"
+          @click="deleteTask(task)"
+        >
+          <div class="px-1 py-3 bg-gray-100 rounded shadow">{{ task }}</div>
+        </div>
+      </transition-group>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.list-enter-from {
+  @apply opacity-0 scale-50;
+}
+
+.list-enter-to {
+  @apply opacity-100 scale-100;
+}
+
+.list-enter-active {
+  @apply transition-all duration-200 ease-in;
+}
+</style>
