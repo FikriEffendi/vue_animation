@@ -11,6 +11,10 @@ const addTask = () => {
     input.value = "";
   }
 };
+
+const deleteTask = (deletedTask) => {
+  tasks.value = tasks.value.filter((task) => task !== deletedTask);
+};
 </script>
 
 <template>
@@ -28,7 +32,8 @@ const addTask = () => {
       <div
         v-for="task in tasks"
         :key="task"
-        class="p-2 mt-3 border border-black min-w-[640px] rounded"
+        class="p-2 mt-3 border border-black min-w-[640px] rounded cursor-pointer"
+        @click="deleteTask(task)"
       >
         <div>{{ task }}</div>
       </div>
