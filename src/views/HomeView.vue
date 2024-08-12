@@ -44,15 +44,18 @@ const deleteTask = (deletedTask) => {
 </template>
 
 <style scoped>
-.list-enter-from {
+.list-enter-from,
+.list-leave-to {
   @apply opacity-0 scale-50;
 }
 
-.list-enter-to {
+.list-enter-to,
+.list-leave-from {
   @apply opacity-100 scale-100;
 }
 
-.list-enter-active {
+.list-enter-active,
+.list-leave-active {
   @apply transition-all duration-200 ease-in;
 }
 </style>
