@@ -7,7 +7,7 @@ const input = ref("");
 
 const addTask = () => {
   if (input.value) {
-    tasks.value.push(input.value);
+    tasks.value.unshift(input.value);
     input.value = "";
   }
 };
@@ -55,7 +55,11 @@ const deleteTask = (deletedTask) => {
 }
 
 .list-enter-active,
-.list-leave-active {
+.list-move {
   @apply transition-all duration-200 ease-in;
+}
+
+.list-leave-active {
+  @apply transition-all duration-200 ease-in absolute;
 }
 </style>
