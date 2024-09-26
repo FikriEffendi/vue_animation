@@ -12,5 +12,28 @@ import { RouterLink, RouterView } from "vue-router";
     </div>
   </div>
 
-  <RouterView />
+  <Transition name="route">
+    <RouterView />
+  </Transition>
 </template>
+
+<style scoped>
+.route-enter-from,
+.route-leave-to {
+  @apply -translate-x-8 opacity-0;
+}
+
+.route-enter-to,
+.route-leave-from {
+  @apply opacity-100 translate-x-0;
+}
+
+.route-enter-active,
+.route-move {
+  @apply transition-all duration-200 ease-in;
+}
+
+.route-leave-active {
+  @apply transition-all duration-200 ease-in absolute;
+}
+</style>
